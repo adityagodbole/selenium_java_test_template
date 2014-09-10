@@ -1,0 +1,3 @@
+username|password|result
+aditya@foo.com|aditya|fail
+sachin+1@vertisinfotech.com|sachin123|pass
