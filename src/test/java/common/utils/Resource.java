@@ -32,6 +32,11 @@ public class Resource {
         return elem_map;
     }
 
+	public static HashMap<String, String> propToHashMap(String resource_name)
+			throws IOException {
+		return toHashMap(toLines(resource_name));
+	}
+
     public static List<HashMap<String, String>> csvToHashMaps(String resource_name) throws IOException {
     	Logger.getGlobal().info("Resource name: " + resource_name);
     	InputStream stream = Resource.class.getResourceAsStream(resource_name);

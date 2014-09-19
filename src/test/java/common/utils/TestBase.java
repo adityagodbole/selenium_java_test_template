@@ -18,6 +18,8 @@ public class TestBase {
     protected String dataSource = null;
     protected void setDataSource(String name) { dataSource = name;}
 
+	protected HashMap<String, String> props;
+
     @BeforeClass
 	@Parameters({ "browser" })
 	public void setUp(String browser) throws Exception {
@@ -48,7 +50,16 @@ public class TestBase {
 	protected List<HashMap<String, String>> dataFromCSV() throws IOException {
 		return dataFromCSV(dataSource);
 	}
+
+	protected HashMap<String, String> dataFromProps() throws IOException {
+		String dataResource = "/data/" + dataSource;
+		return common.utils.Resource.propToHashMap(dataResource);
+	}
     
+	protected HashMap<String, String> fetchProps() throws IOException {
+		props = dataFromProps();
+		return props;
+	}
 	protected void expect(HashMap<String,String> data, TestBody block) {
 		String expect = data.get("result");
 		Boolean result = block.doTest();
